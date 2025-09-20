@@ -173,6 +173,26 @@
     <script src="assets/plugins/simplelightbox/simple-lightbox.min.js"></script>      
     <script src="assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
     <script src="assets/js/docs.js"></script> 
+    <script>
+/*
+  Count hits per-day to CountAPI.
+  Replace NAMESPACE if you want (e.g. 'defendweb' or 'dhairyacode').
+*/
+(function(){
+  try {
+    const NAMESPACE = 'dhairyacode'; // keep this same in your panel fetch code
+    const SITE_TAG = 'dhairyacode.github.io';
+    const today = new Date().toISOString().slice(0,10); // YYYY-MM-DD
+    const key = encodeURIComponent(`${SITE_TAG}-${today}`);
+    const url = `https://api.countapi.xyz/hit/${NAMESPACE}/${key}`;
+    // fire-and-forget increment; ignore errors
+    fetch(url).catch(()=>{});
+  } catch(e) {
+    // fail silently
+  }
+})();
+</script>
+
 
 </body>
 </html>
