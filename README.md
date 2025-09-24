@@ -1,5 +1,5 @@
 <h1 align="center">
-    <a href="https://dhairyacode.github.io"><img src="logo.png" width="25" height="25" alt="LOGO"></a>
+    <a href="https://dhairyacode.github.io"><img src="assets/images/coderdocs-logo.svg" width="25" height="25" alt="LOGO"></a>
   DhairyaCode
 </h1>
 
@@ -10,4 +10,4 @@
 ---
 
 # License
-The Files inside this resporitory are not for commercial uses and they are intentionally in public resporitory.
+This Site is made using A Public HTML Source Template and anybody can access the files and copy its content.
