@@ -10,4 +10,4 @@
 ---
 
 # License
-This Site is made using A Public HTML Source Template and anybody can access the files and copy its content.
+The Vistors or viewer of this repo are not allowed to use this code for your own use. this privatly owned by DhairyaCode
