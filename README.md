@@ -2,7 +2,7 @@
 > the domain **_dhairyacode.github.io_** was shifted to **_dhairyacode.vercel.app_**. 
 
 <h1 align="center">
-  <a href="https://dhairyacode.vercel.app"><img src="assets/logo.svg" width="25" height="25" alt="LOGO"></a>
+  <a href="https://dhairyacode.vercel.app"><img src="assets/img/logo.png" width="25" height="25" alt="LOGO"></a>
   DhairyaCode
 </h1>
 
