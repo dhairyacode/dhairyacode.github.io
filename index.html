@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Domain Shifted | DhairyaCode</title>
+    <title>Domain Shifted</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* General Styles & Resets */
         * {
@@ -13,159 +14,248 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #ffffff; /* Requirement 1: Solid white background */
+            font-family: 'Inter', sans-serif; /* Modern, clean font */
+            background-color: #f8f8f8; /* Slightly off-white for a softer look */
             color: #333;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             padding: 20px;
+            position: relative;
+            overflow: hidden; /* Prevent scrollbar from background animations */
+        }
+
+        /* Subtle Background Animation */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(230, 230, 230, 0.4) 0%, rgba(255, 255, 255, 0.1) 100%);
+            animation: bg-fade-in 1.5s ease-out forwards;
+            z-index: -1;
+        }
+
+        @keyframes bg-fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Auto-Redirection Text Styling */
+        .redirection-timer {
+            position: fixed; /* Use fixed to keep it in view even if content scrolls */
+            top: 20px;
+            right: 20px;
+            font-size: 0.85rem;
+            color: #666;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 8px 12px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            z-index: 1000;
+        }
+
+        /* Main content wrapper for vertical stacking */
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 800px;
+            width: 100%;
+            padding: 20px;
         }
 
         /* Central Container Styling */
         .glass-container {
             position: relative;
-            max-width: 700px;
+            max-width: 650px;
             width: 100%;
-            padding: 50px;
-            border-radius: 15px;
+            padding: 60px 40px;
+            border-radius: 18px;
             text-align: center;
-            
-            /* Requirement 2.2: Aero Glass / Frosted Effect */
-            background: rgba(245, 245, 245, 0.7);
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
-            
-            /* Requirement 2.3: Thin border and subtle glow */
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
-
-            /* Requirement 4: Initial state for JS animation */
-            opacity: 0;
-            transform: scale(0.98) translateY(10px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            background: rgba(255, 255, 255, 0.85);
+            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            animation: fade-in-up 0.8s ease-out 0.2s forwards;
         }
 
-        /* Class to be added by JavaScript for the animation */
-        .glass-container.visible {
-            opacity: 1;
-            transform: scale(1) translateY(0);
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(20px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* Requirement 2.4: Glowing yellow accent lines using pseudo-elements */
+        /* Glowing yellow accent lines */
         .glass-container::before,
         .glass-container::after {
             content: '';
             position: absolute;
-            width: 80px;
-            height: 80px;
-            border-color: #FFD700; /* Yellow color */
+            width: 50px;
+            height: 50px;
+            border-color: #FFD700;
             border-style: solid;
-            filter: drop-shadow(0 0 6px #FFD700); /* Glow effect */
+            filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.7));
+            opacity: 0.7;
+            transition: all 0.3s ease;
         }
 
         .glass-container::before {
-            top: 20px;
-            left: 20px;
-            border-width: 2px 0 0 2px; /* Top and Left borders */
+            top: 25px;
+            left: 25px;
+            border-width: 2px 0 0 2px;
         }
 
         .glass-container::after {
-            bottom: 20px;
-            right: 20px;
-            border-width: 0 2px 2px 0; /* Bottom and Right borders */
+            bottom: 25px;
+            right: 25px;
+            border-width: 0 2px 2px 0;
+        }
+
+        .glass-container:hover::before,
+        .glass-container:hover::after {
+            opacity: 1;
+            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 1));
         }
 
         /* Content Styling */
         .main-title {
-            /* Requirement 3.1: Main Title "Domain Shifted" */
-            font-size: 3rem;
-            font-weight: 600;
-            margin-bottom: 20px;
+            font-size: 3.2rem;
+            font-weight: 700;
+            margin-bottom: 25px;
             color: #222;
+            letter-spacing: -0.03em;
         }
 
         .body-text {
-            /* Requirement 3.2: Body Text */
-            line-height: 1.6;
-            margin-bottom: 20px; /* Adjusted margin */
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
             color: #555;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
-        /* Footer section for Logo and Brand Name */
-        .footer-section {
-            /* Requirement 3.3: Bottom Section */
-            display: flex;
-            justify-content: center;
-            align-items: center; /* This ensures vertical alignment */
-            gap: 15px; /* Slightly reduced gap for smaller logo */
-            margin-top: 40px;
-        }
-        
-        .logo-image {
-            /* Styles for the actual logo image */
-            width: 64px; /* Made smaller */
-            height: 64px; /* Made smaller */
-            object-fit: contain; /* Ensures the image scales properly within its bounds */
-        }
-
-        .brand-name {
-             /* Requirement 3.3.2: DhairyaCode text */
-            font-size: 1.5rem;
-            font-weight: 500;
-            color: #444;
-        }
-
-        /* Style for the new link */
+        /* Visit Homepage Button */
         .visit-link {
-            display: block;
-            margin-top: 10px;
-            color: #007bff; /* Blue color */
+            display: inline-block;
+            margin: 15px 0 10px;
+            padding: 12px 28px; /* Increased padding */
+            background-color: #007bff;
+            color: #ffffff;
+            border-radius: 8px;
             text-decoration: none;
-            font-weight: 500;
-            transition: all 0.2s ease-in-out;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+            border: none;
+            cursor: pointer;
         }
 
         .visit-link:hover {
-            color: #0056b3;
-            text-decoration: underline;
-            transform: scale(1.05);
+            background-color: #0056b3;
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: 0 6px 16px rgba(0, 123, 255, 0.3);
+            text-decoration: none;
         }
+        
+        /* --- FOOTER FIX STARTS HERE --- */
+
+        .footer-section {
+            display: flex;
+            justify-content: space-between; /* Aligns items to the ends */
+            align-items: center;
+            margin-top: 50px; /* More space above footer */
+            padding-top: 25px;
+            border-top: 1px solid rgba(222, 222, 222, 0.7); /* Subtle separator */
+        }
+        
+        .brand-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-image {
+            width: 48px; /* Standardized size */
+            height: 48px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .brand-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #444;
+        }
+        .brand-name b {
+            color: #222;
+        }
+
+        .status-link {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #777;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .status-link:hover {
+            color: #007bff;
+            text-decoration: underline;
+        }
+
     </style>
 </head>
 <body>
 
-    <div class="glass-container" id="main-container">
-        <h1 class="main-title">Domain Shifted</h1>
-        
-        <p class="body-text">
-            To inform the visitors that the domain of "dhairyacode.github.io" was shifted to "dhairyacode.vercel.app"
-        </p>
-        <p class="body-text">
-            in order to protect the site this action was taken, the dhairyacode github profile is still visitable.
-        </p>
-        
-        <a href="https://dhairyacode.vercel.app" class="visit-link">Click Here to Visit</a>
-
-        <p class="body-text">
-            to check the projects/site status of DhairyaCode use the following link
-        </p>
-        <a href="https://dhairyacode.vercel.app/status" class="visit-link">Status</a>
-        
-        <div class="footer-section">
-            <img src="assets/img/logo.png" alt="DhairyaCode Logo" class="logo-image">
-            <p class="brand-name">Dhairya<b>Code</b></p>
-        </div>
+    <div class="redirection-timer">
+        Auto-Redirection: <span id="countdown">30</span>
     </div>
+
+    <main>
+        <div class="glass-container" id="main-container">
+            <h1 class="main-title">Domain Shifted</h1>
+            
+            <p class="body-text">
+                To inform our valued visitors: The domain of "dhairyacode.github.io" has officially been shifted to "dhairyacode.vercel.app".
+            </p>
+            <p class="body-text">
+                This proactive measure was taken to enhance site security and provide a more robust experience. The DhairyaCode GitHub profile remains accessible, but for continued access to the website's content, please use the new domain.
+            </p>
+            
+            <a href="https://dhairyacode.vercel.app" class="visit-link">Visit Homepage</a>
+            
+            <div class="footer-section">
+                <div class="brand-info">
+                    <img src="assets/img/logo.png" alt="DhairyaCode Logo" class="logo-image">
+                    <p class="brand-name">Dhairya<b>Code</b></p>
+                </div>
+                <a href="https://dhairyacode.vercel.app/status" class="status-link">Check Status</a>
+            </div>
+        </div>
+    </main>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const container = document.getElementById('main-container');
-            // Add the 'visible' class after a short delay to ensure the transition is seen
-            setTimeout(() => {
-                container.classList.add('visible');
-            }, 100); 
+            // Auto-redirection countdown
+            const countdownElement = document.getElementById('countdown');
+            let timeLeft = 30;
+
+            const countdownInterval = setInterval(() => {
+                timeLeft--;
+                countdownElement.textContent = timeLeft;
+
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    window.location.href = 'https://dhairyacode.vercel.app';
+                }
+            }, 1000); // Update every second
         });
     </script>
 
